@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DDS WEB 🕸️</title>
+    <title>DDS - Dark Digital Space</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         
         * {
             margin: 0;
@@ -14,763 +15,1174 @@
         }
 
         body {
-            font-family: 'Rajdhani', sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #0a0a0a 100%);
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            font-family: 'Inter', sans-serif;
+            background: #0a0e1a;
+            color: #e4e7ec;
+            line-height: 1.6;
             overflow-x: hidden;
-            position: relative;
         }
 
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 68, 68, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(0, 123, 255, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+            animation: bgShift 20s ease infinite;
             pointer-events: none;
-            z-index: -1;
-            animation: backgroundPulse 8s ease-in-out infinite;
         }
 
-        @keyframes backgroundPulse {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; }
+        @keyframes bgShift {
+            0%, 100% { transform: scale(1) translateY(0); }
+            50% { transform: scale(1.1) translateY(-20px); }
         }
 
-        body::after {
-            content: '';
-            position: fixed;
+        nav {
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1a2234;
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.1), transparent),
-                radial-gradient(2px 2px at 40px 70px, rgba(0, 255, 136, 0.2), transparent),
-                radial-gradient(1px 1px at 90px 40px, rgba(255, 68, 68, 0.2), transparent),
-                radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.1), transparent),
-                radial-gradient(2px 2px at 160px 30px, rgba(0, 123, 255, 0.2), transparent);
-            background-repeat: repeat;
-            background-size: 200px 100px;
-            animation: particleFloat 20s linear infinite;
-            pointer-events: none;
-            z-index: -1;
+            z-index: 1000;
+            animation: slideDown 0.5s ease;
         }
 
-        @keyframes particleFloat {
-            0% { transform: translateY(0px); }
-            100% { transform: translateY(-100px); }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
-        .container {
-            width: 100%;
-            max-width: 600px;
-            background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
-            border-radius: 25px;
-            padding: 40px 30px;
-            box-shadow: 
-                0 25px 50px rgba(0, 0, 0, 0.8),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                0 0 0 1px rgba(255, 255, 255, 0.05),
-                0 0 100px rgba(0, 255, 136, 0.1);
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s;
             position: relative;
-            overflow: hidden;
-            text-align: center;
-            backdrop-filter: blur(20px);
-            animation: containerFloat 6s ease-in-out infinite;
         }
 
-        @keyframes containerFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .container::before {
+        .nav-links a::after {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: -5px;
             left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #00ff88, #ff4444, #007bff, #00ff88);
-            background-size: 200% 100%;
-            animation: borderFlow 3s linear infinite;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: width 0.3s;
         }
 
-        @keyframes borderFlow {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+        .nav-links a:hover {
+            color: #fff;
         }
 
-        .header {
-            margin-bottom: 40px;
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
-        .title {
-            font-family: 'Orbitron', monospace;
-            font-size: 32px;
-            font-weight: 900;
-            background: linear-gradient(45deg, #00ff88, #ffffff, #ff4444);
-            background-clip: text;
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .hero {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 6rem 1.5rem 4rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            animation: fadeInUp 0.8s ease;
+            background: linear-gradient(135deg, #fff, #3b82f6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            animation: titleGlow 2s ease-in-out infinite alternate;
         }
 
-        @keyframes titleGlow {
-            0% { filter: drop-shadow(0 0 5px rgba(0, 255, 136, 0.3)); }
-            100% { filter: drop-shadow(0 0 15px rgba(0, 255, 136, 0.6)); }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .subtitle {
-            font-size: 18px;
-            color: #888;
-            font-weight: 400;
-            margin-bottom: 10px;
+        .hero p {
+            font-size: 1.25rem;
+            color: #9ca3af;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease 0.2s both;
         }
 
-        .version-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #ff4444 0%, #cc3333 100%);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-            animation: pulse 2s infinite;
+        .hero-highlight {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+            border-left: 3px solid #3b82f6;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            border-radius: 8px;
+            max-width: 700px;
+            animation: fadeInUp 0.8s ease 0.6s both;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .hero-highlight p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.7;
         }
 
-        /* Initial State - Channel Follow */
-        .follow-state {
-            display: block;
+        .hero-highlight strong {
+            color: #3b82f6;
         }
 
-        .follow-message {
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.15) 0%, rgba(0, 255, 136, 0.08) 100%);
-            border: 2px solid rgba(0, 255, 136, 0.4);
-            border-radius: 20px;
-            padding: 35px;
-            margin-bottom: 30px;
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .btn {
+            padding: 0.875rem 1.75rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(15px);
         }
 
-        .follow-message::before {
+        .btn::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(0, 255, 136, 0.15), transparent);
-            animation: cardShimmer 4s linear infinite;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
         }
 
-        @keyframes cardShimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
-        .follow-text {
-            font-family: 'Orbitron', monospace;
-            font-size: 20px;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 25px;
+        .btn span {
             position: relative;
-            z-index: 2;
-            line-height: 1.4;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1;
         }
 
-        .follow-button {
-            width: 100%;
-            background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
-            border: none;
-            border-radius: 15px;
-            padding: 20px 25px;
-            font-family: 'Orbitron', monospace;
-            font-size: 18px;
-            font-weight: 700;
-            color: #000000;
-            cursor: pointer;
-            position: relative;
-            z-index: 2;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.4);
-            text-decoration: none;
-            display: inline-block;
+        .btn-primary {
+            background: #3b82f6;
+            color: #fff;
         }
 
-        .follow-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.5);
-            background: linear-gradient(135deg, #00ff88 0%, #00ff88 100%);
-        }
-
-        .back-button {
-            background: linear-gradient(135deg, #666 0%, #444 100%);
-            border: none;
-            border-radius: 12px;
-            padding: 15px 25px;
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            color: #ffffff;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .back-button:hover {
+        .btn-primary:hover {
+            background: #2563eb;
             transform: translateY(-2px);
-            background: linear-gradient(135deg, #777 0%, #555 100%);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
         }
 
-        /* Tool State - Hidden by default */
-        .tool-state {
-            display: none;
+        .btn-secondary {
+            background: #1a2234;
+            color: #fff;
+            border: 1px solid #2d3748;
         }
 
-        .section {
-            margin-bottom: 35px;
+        .btn-secondary:hover {
+            background: #2d3748;
+            transform: translateY(-2px);
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .section-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 24px;
+            font-size: 2rem;
             font-weight: 700;
-            color: #ff4444;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .section-subtitle {
+            color: #9ca3af;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+
+        .card {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.4s;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: cardFadeIn 0.6s ease forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes cardFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            transition: color 0.3s;
+        }
+
+        .card:hover .card-title {
+            color: #3b82f6;
+        }
+
+        .card-text {
+            color: #9ca3af;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: scale(1.05);
+            border-color: #3b82f6;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .team-card {
+            text-align: center;
             position: relative;
         }
 
-        .section-title::after {
+        .team-card::before {
             content: '';
             position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #ff4444, transparent);
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #3b82f6, #10b981, #3b82f6);
+            border-radius: 8px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
         }
 
-        .script-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
-        .script-option {
-            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
-            border: 2px solid rgba(255, 68, 68, 0.3);
-            border-radius: 15px;
-            padding: 25px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .team-card:hover::before {
+            opacity: 1;
+        }
+
+        .team-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: #3b82f6;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .platform-card {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            text-decoration: none;
+            color: #e4e7ec;
+            transition: all 0.3s;
             position: relative;
             overflow: hidden;
-            text-align: center;
-            transform-style: preserve-3d;
-            perspective: 1000px;
         }
 
-        .script-option::before {
+        .platform-card::after {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 68, 68, 0.1), transparent);
-            transition: left 0.6s ease;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+            transition: left 0.5s;
         }
 
-        .script-option:hover {
-            border-color: rgba(255, 68, 68, 0.8);
-            box-shadow: 
-                0 15px 35px rgba(255, 68, 68, 0.4),
-                0 5px 15px rgba(255, 68, 68, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            transform: translateY(-8px) rotateX(5deg) rotateY(5deg);
-            background: linear-gradient(135deg, rgba(255, 68, 68, 0.1) 0%, #2a2a2a 50%, #1a1a1a 100%);
-        }
-
-        .script-option:hover::before {
+        .platform-card:hover::after {
             left: 100%;
         }
 
-        .script-option:active {
-            transform: translateY(-5px) rotateX(2deg) rotateY(2deg) scale(0.98);
+        .platform-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
         }
 
-        .script-option.downloading {
-            border-color: #00ff88;
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.2) 0%, rgba(0, 255, 136, 0.1) 100%);
-            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.3);
+        .platform-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
         }
 
-        .script-name {
-            font-family: 'Orbitron', monospace;
-            font-size: 18px;
+        .platform-desc {
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .vip-card {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.15), rgba(59, 130, 246, 0.15));
+            border: 2px solid #8a2be2;
+            border-radius: 12px;
+            padding: 3rem;
+            margin: 3rem auto;
+            max-width: 900px;
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
+        }
+
+        .vip-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .vip-title {
+            font-size: 2.5rem;
             font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 10px;
+            color: #c084fc;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .script-status {
-            font-size: 14px;
-            color: #888;
-            margin-bottom: 15px;
+        .vip-subtitle {
+            font-size: 1.5rem;
+            color: #60a5fa;
+            margin-bottom: 1rem;
         }
 
-        .download-icon {
-            font-size: 28px;
-            color: #ff4444;
-            margin-bottom: 15px;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            display: inline-block;
-            position: relative;
+        .vip-content {
+            color: #e4e7ec;
+            line-height: 1.8;
+            margin-bottom: 2rem;
         }
 
-        .download-icon::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 40px;
-            height: 40px;
-            border: 2px solid rgba(255, 68, 68, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            transition: all 0.3s ease;
+        .vip-steps {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
         }
 
-        .script-option:hover .download-icon {
-            color: #00ff88;
-            transform: scale(1.3) rotate(360deg);
-            text-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+        .vip-step {
+            margin-bottom: 2rem;
         }
 
-        .script-option:hover .download-icon::after {
-            transform: translate(-50%, -50%) scale(1);
-            border-color: rgba(0, 255, 136, 0.5);
+        .vip-step:last-child {
+            margin-bottom: 0;
         }
 
-        .script-option.downloading .download-icon {
-            animation: downloadPulse 1s ease-in-out infinite;
+        .vip-step h4 {
+            color: #60a5fa;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
         }
 
-        @keyframes downloadPulse {
-            0%, 100% { transform: scale(1.2); }
-            50% { transform: scale(1.4); }
+        .vip-step p {
+            color: #9ca3af;
+            margin-bottom: 0.5rem;
         }
 
-        .other-downloads {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 35px;
+        .vip-step ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
         }
 
-        .download-card {
-            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 18px;
-            padding: 30px;
-            transition: all 0.3s ease;
+        .payment-details {
+            background: rgba(16, 185, 129, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border-left: 3px solid #10b981;
+        }
+
+        .payment-details p {
+            margin-bottom: 0.5rem;
+            color: #e4e7ec;
+        }
+
+        .payment-details strong {
+            color: #60a5fa;
+        }
+
+        .earning-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(16, 185, 129, 0.15));
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 3rem;
+            margin: 3rem auto;
+            max-width: 900px;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .earning-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .earning-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .earning-section h3 {
+            color: #60a5fa;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .earning-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .earning-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e4e7ec;
+        }
+
+        .earning-list li:last-child {
+            border-bottom: none;
+        }
+
+        .earning-note {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            color: #9ca3af;
+            font-style: italic;
+        }
+
+        .rewards-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+
+        .rewards-table th,
+        .rewards-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .rewards-table th {
+            color: #60a5fa;
+            font-weight: 600;
+        }
+
+        .rewards-table td {
+            color: #e4e7ec;
+        }
+
+        .rewards-table tr:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .highlight-text {
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        .warning-text {
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
+        .download-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            max-width: 600px;
+            margin: 2rem auto 0;
             position: relative;
             overflow: hidden;
         }
 
-        .download-card:hover {
-            border-color: rgba(0, 255, 136, 0.4);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.15);
-            transform: translateY(-5px);
+        .download-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            animation: shine 3s infinite;
         }
 
-        .download-card-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 18px;
+        @keyframes shine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .download-title {
+            font-size: 1.75rem;
             font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 1;
         }
 
-        .download-card-button {
-            width: 100%;
-            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-            border: none;
-            border-radius: 12px;
-            padding: 18px 25px;
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 16px;
+        .download-desc {
+            color: #9ca3af;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer {
+            background: #050810;
+            border-top: 1px solid #1a2234;
+            margin-top: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-title {
             font-weight: 600;
-            color: #ffffff;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .download-card-button.whatsapp {
-            background: linear-gradient(135deg, #25d366 0%, #1da851 100%);
-        }
-
-        .download-card-button.youtube {
-            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
-        }
-
-        .download-card-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 123, 255, 0.4);
-        }
-
-        .download-card-button.whatsapp:hover {
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-        }
-
-        .download-card-button.youtube:hover {
-            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.4);
-        }
-
-        .footer {
-            text-align: center;
-            padding-top: 35px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 1rem;
         }
 
         .footer-text {
-            font-family: 'Orbitron', monospace;
-            font-size: 18px;
-            font-weight: 700;
-            color: #ff4444;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-            animation: footerPulse 2s ease-in-out infinite alternate;
+            color: #9ca3af;
+            font-size: 0.9rem;
+            line-height: 1.6;
         }
 
-        @keyframes footerPulse {
-            0% { opacity: 0.7; }
-            100% { opacity: 1; }
+        .footer-links {
+            list-style: none;
         }
 
-        .footer-link {
-            display: inline-block;
-            background: linear-gradient(135deg, #25d366 0%, #1da851 100%);
-            color: white;
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
             text-decoration: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 600;
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            position: relative;
         }
 
-        .footer-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
+        .footer-links a::before {
+            content: '→';
+            position: absolute;
+            left: -15px;
+            opacity: 0;
+            transition: all 0.3s;
         }
 
-        .icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
-            vertical-align: middle;
+        .footer-links a:hover {
+            color: #3b82f6;
+            padding-left: 15px;
         }
 
-        .success-message {
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.25) 0%, rgba(0, 255, 136, 0.15) 100%);
-            border: 2px solid rgba(0, 255, 136, 0.6);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 25px 0;
-            color: #00ff88;
-            font-weight: 700;
-            text-align: center;
-            display: none;
-            animation: successSlide 0.5s ease-out;
-            font-size: 16px;
+        .footer-links a:hover::before {
+            opacity: 1;
+            left: 0;
         }
 
-        .success-message.show {
-            display: block;
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 1.5rem;
+            border-top: 1px solid #1a2234;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #6b7280;
+            font-size: 0.9rem;
         }
 
-        @keyframes successSlide {
-            from { opacity: 0; transform: translateY(-15px); }
-            to { opacity: 1; transform: translateY(0); }
+        .social-links {
+            display: flex;
+            gap: 1rem;
         }
 
-        .download-notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
-            color: #000;
-            padding: 15px 25px;
-            border-radius: 10px;
-            font-weight: 700;
-            z-index: 1000;
-            transform: translateX(400px);
-            transition: transform 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.3);
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            background: #1a2234;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            text-decoration: none;
+            transition: all 0.3s;
         }
 
-        .download-notification.show {
-            transform: translateX(0);
+        .social-icon:hover {
+            background: #3b82f6;
+            color: #fff;
+            transform: translateY(-3px) rotate(5deg);
         }
 
-        @media (max-width: 600px) {
-            .container {
-                margin: 10px;
-                padding: 30px 20px;
-                max-width: 95%;
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
             }
-            
-            .title {
-                font-size: 26px;
+
+            .nav-links {
+                display: none;
             }
-            
-            .script-grid {
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .grid-3 {
                 grid-template-columns: 1fr;
             }
-            
-            .other-downloads {
+
+            .footer-content {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
-            .download-notification {
-                right: 10px;
-                left: 10px;
-                transform: translateY(-100px);
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
             }
 
-            .download-notification.show {
-                transform: translateY(0);
+            .stats-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1 class="title">DDS WEB 🕸️</h1>
-            <p class="subtitle">TREASURE404DANGER TOOL</p>
-            <div class="version-badge">VERSION 1.0</div>
-        </div>
-
-        <!-- Initial State - Channel Follow -->
-        <div class="follow-state" id="followState">
-            <div class="follow-message">
-                <div class="follow-text">
-                    YOU NEED TO FOLLOW OUR DDS<br>
-                    OFFICIAL CHANNEL ON WHATSAPP
-                </div>
-                <a href="https://whatsapp.com/channel/0029VbAQP858kyyPVm8gDL0F" 
-                   class="follow-button" 
-                   target="_blank" 
-                   onclick="handleChannelFollow()">
-                    <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.386"/>
-                    </svg>
-                    FOLLOW CHANNEL 
-                </a>
-            </div>
-            <div class="success-message" id="successMessage">
-                ✓ CHANNEL FOLLOWED! REDIRECTING TO DDS...
-            </div>
-            <button class="back-button" onclick="showTool()" style="display: none;" id="continueButton">
-                CONTINUE TO DDS 
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">DDS</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#vip">VIP Access</a></li>
+                <li><a href="#earning">Earn Rewards</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#download">Download</a></li>
+            </ul>
+            <button class="mobile-toggle">
+                <i class="fas fa-bars"></i>
             </button>
         </div>
+    </nav>
 
-        <!-- Tool State - Hidden by default -->
-        <div class="tool-state" id="toolState">
-            <div class="section">
-                <h2 class="section-title">SELECT & DOWNLOAD DDS APK</h2>
-                <div class="script-grid">
-                    <div class="script-option" onclick="downloadScript('SCRIPT 1', 'https://apk.e-droid.net/apk/app3660918-4y0ci2.apk?v=1')">
-                        <div class="download-icon">⬇️</div>
-                        <div class="script-name">DDS APK</div>
-                        <div class="script-status">CLICK TO DOWNLOAD</div>
-                    </div>
-                    <div class="script-option" onclick="downloadScript('SCRIPT 2', 'https://whatsapp.com/channel/0029VbAQP858kyyPVm8gDL0F')">
-                        <div class="download-icon">⬇️</div>
-                        <div class="script-name">CHANNEL</div>
-                        <div class="script-status">FOLLOW US ON OUR CHANNEL</div>
-                    </div>
-            <div class="section">
-                <h2 class="section-title">CONTACT US</h2>
-                <div class="other-downloads">
-                    <div class="download-card">
-                        <div class="download-card-title">Jphood-OWNER </div>
-                        <a href="https://wa.me/2348087395751" 
-                           class="download-card-button whatsapp" 
-                           target="_blank">
-                            CHAT NOW
-                        </a>
-                    </div>
-                       <div class="section">
-                <div class="other-downloads">
-                    <div class="download-card">
-                                    <div class="download-card-title">TREASURE404DANGER-ADMINISTRATOR</div>
-                        <a href="https://wa.me/2349013175133" 
-                           class="download-card-button whatsapp" 
-                           target="_blank">
-                            CHAT NOW
-                        </a>
-                    </div>
-                    <div class="section">
-                <div class="other-downloads">
-                    <div class="download-card">
-                                    <div class="download-card-title">JUDAH-ADMINISTRATOR2</div>
-                        <a href="https://wa.me/2349113086817" 
-                           class="download-card-button whatsapp" 
-                           target="_blank">
-                            CHAT NOW
-                        </a>
-                    </div>
+    <section class="hero">
+        <h1>Dark Digital Space</h1>
+        <p>A specialized digital forum for global gatherings of tech enthusiasts. We're a community of tech brothers and sisters in an ideological cyber technology development forum - not just social media, but a place of innovation, skills development, and entertainment with lesser boundaries towards cyber media.</p>
+        
+        <div class="hero-highlight">
+            <p><strong>Our Mission:</strong> DDS serves as a hub for individuals interested in cybersecurity, ethical hacking, and programming. We emphasize knowledge sharing, skill development, and ethical conduct while fostering a community that values learning, innovation, and responsible engagement with technology. We are here to contribute to the Nigerian tech ecosystem with innovative minds and skills. <a href="https://chat.whatsapp.com/CZ6igT4YgWrK5mK1Mffjfh" target="_blank" style="color: #3b82f6; text-decoration: underline;">Join us</a> - no schemes, just engagement strings and development.</p>
+        </div>
 
-                </div>
+        <div class="hero-buttons">
+            <a href="#download" class="btn btn-primary">
+                <span><i class="fas fa-download"></i> Download DDS</span>
+            </a>
+            <a href="https://whatsapp.com/channel/0029VbAQP858kyyPVm8gDL0F" target="_blank" class="btn btn-secondary">
+                <span><i class="fab fa-whatsapp"></i> Join Channel</span>
+            </a>
+            <a href="https://chat.whatsapp.com/CZ6igT4YgWrK5mK1Mffjfh" target="_blank" class="btn btn-secondary">
+                <span><i class="fas fa-heart"></i> Support Us</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="fade-in-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">1000+</div>
+                <div class="stat-label">Active Members</div>
             </div>
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Community Support</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Free Access</div>
+            </div>
+        </div>
+    </section>
 
-            <div class="footer">
-                <div class="footer-text"> DDS TEAM</div>
-                <a href="https://whatsapp.com/channel/0029VbAQP858kyyPVm8gDL0F" 
-                   class="footer-link" 
-                   target="_blank">
-                    <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.386"/>
-                    </svg>
-                    JOIN WHATSAPP CHANNEL
+    <section id="about" class="fade-in-section">
+        <h2 class="section-title">What is DDS?</h2>
+        <p class="section-subtitle">A specialized digital forum for tech enthusiasts passionate about cybersecurity and innovation</p>
+        <div class="grid grid-3">
+            <div class="card">
+                <h3 class="card-title">Tech Community Forum</h3>
+                <p class="card-text">A specialized digital forum bringing together tech brothers and sisters globally. We're not a social media platform - we're an ideological cyber technology development community focused on real growth.</p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Knowledge Sharing Hub</h3>
+                <p class="card-text">Share knowledge, skills, and entertainment related to cybersecurity, ethical hacking, and programming. Educational and recreational interactions that emphasize ethical conduct and media security.</p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Skills Development</h3>
+                <p class="card-text">No schemes - just engagement strings and development on both skills and entertainment. We help one another grow through practical learning and real-world tech applications.</p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Lesser Boundaries</h3>
+                <p class="card-text">A place of lesser boundaries towards cyber media where innovation thrives. Explore cybersecurity concepts in a safe, collaborative environment focused on responsible engagement.</p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Nigerian Tech Contribution</h3>
+                <p class="card-text">Contributing to the Nigerian tech ecosystem with innovative minds and skills. Building a community that values learning, innovation, and ethical technology practices.</p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Global Tech Network</h3>
+                <p class="card-text">Facilitating global gatherings of individuals interested in cybersecurity and programming. A system for all tech-related members, especially those into programming or all-around cyber development.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="fade-in-section">
+        <h2 class="section-title">Meet Our Leadership</h2>
+        <p class="section-subtitle">The visionaries building Nigeria's cyber security community</p>
+        <div class="grid grid-3">
+            <div class="card team-card">
+                <h3 class="team-name">Jp</h3>
+                <div class="team-role">Founder & Owner</div>
+                <a href="https://wa.me/2348087395751" target="_blank" class="btn btn-primary">
+                    <span><i class="fab fa-whatsapp"></i> Contact</span>
+                </a>
+            </div>
+            <div class="card team-card">
+                <h3 class="team-name">JUDAH</h3>
+                <div class="team-role">Lead Administrator</div>
+                <a href="https://wa.me/2349113086817" target="_blank" class="btn btn-primary">
+                    <span><i class="fab fa-whatsapp"></i> Contact</span>
+                </a>
+            </div>
+            <div class="card team-card">
+                <h3 class="team-name">TREASURE404DANGER</h3>
+                <div class="team-role">Site Administrator</div>
+                <a href="https://wa.me/2349013175133" target="_blank" class="btn btn-primary">
+                    <span><i class="fab fa-whatsapp"></i> Contact</span>
                 </a>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Download Notification -->
-    <div class="download-notification" id="downloadNotification">
-        Download started! Check your downloads folder.
-    </div>
+    <section id="community" class="fade-in-section">
+        <h2 class="section-title">Join Our Community</h2>
+        <p class="section-subtitle">Connect, learn, and support our mission across multiple platforms</p>
+        <div class="grid grid-3">
+            <a href="https://whatsapp.com/channel/0029VbAQP858kyyPVm8gDL0F" target="_blank" class="platform-card">
+                <div class="platform-name">WhatsApp Channel</div>
+                <div class="platform-desc">Official updates & announcements</div>
+            </a>
+            <a href="https://chat.whatsapp.com/CZ6igT4YgWrK5mK1Mffjfh" target="_blank" class="platform-card">
+                <div class="platform-name">Support & Donations</div>
+                <div class="platform-desc">Help us grow & provide feedback</div>
+            </a>
+            <a href="#" class="platform-card">
+                <div class="platform-name">YouTube</div>
+                <div class="platform-desc">Video tutorials & training</div>
+            </a>
+            <a href="#" class="platform-card">
+                <div class="platform-name">Discord</div>
+                <div class="platform-desc">Live discussions & mentorship</div>
+            </a>
+            <a href="#" class="platform-card">
+                <div class="platform-name">Twitter</div>
+                <div class="platform-desc">Latest news & updates</div>
+            </a>
+        </div>
+    </section>
+
+    <section id="vip" class="fade-in-section">
+        <h2 class="section-title">VIP Access Card</h2>
+        <p class="section-subtitle">Get exclusive access to the DDS VIP community</p>
+        
+        <div class="vip-card">
+            <div class="vip-header">
+                <h3 class="vip-title">VIP Access Card</h3>
+                <p class="vip-subtitle">Command Center Authorization</p>
+            </div>
+            
+            <div class="vip-content">
+                <p>Welcome to the Dark Digital Space (DDS). This is your official entry pass to request access into the DDS VIP WhatsApp Group and begin your DDS Number approval process.</p>
+            </div>
+
+            <div class="vip-steps">
+                <h3 style="color: #60a5fa; margin-bottom: 1.5rem; font-size: 1.5rem;">JOINING PROCEDURE</h3>
+                
+                <div class="vip-step">
+                    <h4>STEP 1 — Request Access</h4>
+                    <p>Tap the official DDS VIP Group Join Link to submit your access request.</p>
+                    <p class="warning-text">(Joining without approval is restricted — every user must be verified.)</p>
+                </div>
+
+                <div class="vip-step">
+                    <h4>STEP 2 — Pay Approval Fee (₦500)</h4>
+                    <p>A one-time fee of <strong>₦500</strong> is required for:</p>
+                    <ul>
+                        <li>Your DDS Number approval, and</li>
+                        <li>Your VIP Group membership approval</li>
+                    </ul>
+                    
+                    <div class="payment-details">
+                        <p><strong>Payment Details:</strong></p>
+                        <p><i class="fas fa-university"></i> <strong>Bank:</strong> Opay</p>
+                        <p><i class="fas fa-credit-card"></i> <strong>Account Number:</strong> 8087395751</p>
+                        <p><i class="fas fa-money-bill-wave"></i> <strong>Amount:</strong> ₦500</p>
+                    </div>
+                </div>
+
+                <div class="vip-step">
+                    <h4>STEP 3 — Get Verified</h4>
+                    <p>After payment, send your payment confirmation to the admin for verification. Once approved, you'll receive your unique DDS Number and VIP access.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="earning" class="fade-in-section">
+        <h2 class="section-title">DDS Earning System</h2>
+        <p class="section-subtitle">Turn your participation into real rewards</p>
+        
+        <div class="earning-card">
+            <div class="vip-header">
+                <h3 class="vip-title">Earning System Card</h3>
+                <p class="vip-subtitle">Command Center Reward Protocol</p>
+            </div>
+            
+            <div class="vip-content">
+                <p>Welcome to the Earning Sector of the Dark Digital Space (DDS) — where every action you take generates value. Earn <span class="highlight-text">real money and Bits (฿)</span> through referrals, challenges, engagements, and social activity across the DDS network.</p>
+            </div>
+
+            <div class="earning-section">
+                <h3>1. REFERRAL EARNINGS</h3>
+                <ul class="earning-list">
+                    <li><i class="fas fa-coins"></i> <strong>Referrer reward:</strong> ₦1,000 per successful invite</li>
+                    <li><i class="fas fa-gift"></i> <strong>Invitee reward:</strong> ₦500 welcome bonus</li>
+                </ul>
+                <p class="earning-note">Both users must have active DDS Numbers and verified accounts.</p>
+            </div>
+
+            <div class="earning-section">
+                <h3>2. CHALLENGES & COMPETITIONS</h3>
+                <ul class="earning-list">
+                    <li><i class="fas fa-trophy"></i> <strong>Win a challenge:</strong> Earn 15-30 Bits / ₦ per win</li>
+                    <li><i class="fas fa-medal"></i> <strong>Lose a challenge:</strong> Still earn 5 Bits for participation</li>
+                </ul>
+                <p class="earning-note">Participation always counts — every mission builds your DDS profile!</p>
+            </div>
+
+            <div class="earning-section">
+                <h3>3. ENGAGEMENT REWARDS</h3>
+                <table class="rewards-table">
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>Reward</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><i class="fas fa-user-plus"></i> Follow someone</td>
+                            <td class="highlight-text">+3 Bits</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-user-check"></i> Get followed</td>
+                            <td class="highlight-text">+5 Bits</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-heart"></i> Like a profile</td>
+                            <td class="highlight-text">+4 Bits</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-thumbs-up"></i> Get profile liked</td>
+                            <td class="highlight-text">+4 Bits</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-heart"></i> Post gets liked</td>
+                            <td class="highlight-text">+2 Bits</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-comment"></i> First to comment on a post</td>
+                            <td class="highlight-text">+5 Bits</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="vip-content" style="margin-top: 2rem; background: rgba(16, 185, 129, 0.1); padding: 1.5rem; border-radius: 8px; border-left: 3px solid #10b981;">
+                <p><strong><i class="fas fa-info-circle"></i> How to Start Earning:</strong></p>
+                <p>1. Get your DDS Number and VIP access</p>
+                <p>2. Stay active in the community</p>
+                <p>3. Participate in challenges and competitions</p>
+                <p>4. Invite friends and earn referral bonuses</p>
+                <p>5. Watch your Bits and earnings grow!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="download" class="fade-in-section">
+        <h2 class="section-title">Get the DDS App</h2>
+        <div class="download-box">
+            <h3 class="download-title">DDS Mobile</h3>
+            <p class="download-desc">Experience the full power of DDS on your mobile device. Connect with the community anytime, anywhere.</p>
+            <a href="https://apk.e-droid.net/apk/app3660918-4y0ci2.apk?v=1" class="btn btn-primary">
+                <span><i class="fas fa-download"></i> Download APK (v2.0)</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h4 class="footer-title">Dark Digital Space</h4>
+                <p class="footer-text">A specialized digital forum for tech enthusiasts passionate about cybersecurity, ethical hacking, and programming. We're an ideological cyber technology development community contributing to the Nigerian tech ecosystem with innovative minds and skills.</p>
+            </div>
+            <div>
+                <h4 class="footer-title">Product</h4>
+                <ul class="footer-links">
+                    <li><a href="#about">About DDS</a></li>
+                    <li><a href="#vip">VIP Access</a></li>
+                    <li><a href="#earning">Earning System</a></li>
+                    <li><a href="#team">Our Team</a></li>
+                    <li><a href="#download">Download App</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Community</h4>
+                <ul class="footer-links">
+                    <li><a href="https://whatsapp.com/channel/0029VbAQP858kyyPVm8gDL0F" target="_blank">WhatsApp Channel</a></li>
+                    <li><a href="https://chat.whatsapp.com/CZ6igT4YgWrK5mK1Mffjfh" target="_blank">Support & Donate</a></li>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">Discord</a></li>
+                    <li><a href="#">Twitter</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Contact</h4>
+                <ul class="footer-links">
+                    <li><a href="https://wa.me/2348087395751">Jphood</a></li>
+                    <li><a href="https://wa.me/2349013175133">TREASURE404DANGER</a></li>
+                    <li><a href="https://wa.me/2349113086817">JUDAH</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year"></span> Dark Digital Space. An Ideological Cyber Technology Development Forum.</p>
+            <div class="social-links">
+                <a href="https://whatsapp.com/channel/0029VbAQP858kyyPVm8gDL0F" target="_blank" class="social-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // Check if user has already followed the channel
-        let hasFollowed = localStorage.getItem('channelFollowed') === 'true';
+        document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // If user has already followed, show tool directly
-        if (hasFollowed) {
-            showTool();
-        }
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-        function handleChannelFollow() {
-            // Mark that user has followed the channel
-            localStorage.setItem('channelFollowed', 'true');
-            
-            // Show success message
-            document.getElementById('successMessage').classList.add('show');
-            
-            // Show continue button after 2 seconds
-            setTimeout(() => {
-                document.getElementById('continueButton').style.display = 'block';
-            }, 2000);
-            
-            // Auto-redirect to tool after 4 seconds
-            setTimeout(() => {
-                showTool();
-            }, 4000);
-        }
-
-        function showTool() {
-            document.getElementById('followState').style.display = 'none';
-            document.getElementById('toolState').style.display = 'block';
-        }
-
-        function downloadScript(scriptName, url) {
-            // Add visual feedback
-            const clickedElement = event.currentTarget;
-            clickedElement.classList.add('downloading');
-            
-            // Show download notification
-            showDownloadNotification(`${scriptName} download started!`);
-            
-            // Open download link in new tab
-            window.open(url, '_blank');
-            
-            // Remove visual feedback after 2 seconds
-            setTimeout(() => {
-                clickedElement.classList.remove('downloading');
-            }, 2000);
-        }
-
-        function showDownloadNotification(message) {
-            const notification = document.getElementById('downloadNotification');
-            notification.textContent = message;
-            notification.classList.add('show');
-            
-            // Hide notification after 3 seconds
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-
-        // Add some interactive effects
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add hover sound effect simulation
-            const scriptOptions = document.querySelectorAll('.script-option');
-            scriptOptions.forEach(option => {
-                option.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px) scale(1.02)';
-                });
-                
-                option.addEventListener('mouseleave', function() {
-                    if (!this.classList.contains('downloading')) {
-                        this.style.transform = 'translateY(0) scale(1)';
-                    }
-                });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        const animateValue = (element, start, end, duration) => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value + (element.dataset.suffix || '');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumber = entry.target.querySelector('.stat-number');
+                    const text = statNumber.textContent;
+                    const value = parseInt(text.replace(/\D/g, ''));
+                    if (value) {
+                        statNumber.dataset.suffix = text.replace(/\d/g, '');
+                        statNumber.textContent = '0';
+                        animateValue(statNumber, 0, value, 2000);
+                    }
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-item').forEach(stat => {
+            statsObserver.observe(stat);
         });
     </script>
 </body>
 </html>
-
